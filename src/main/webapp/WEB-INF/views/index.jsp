@@ -1,11 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<script src="/js/index.js"></script>
+<script>
+
+</script>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Order List</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>주문조회</title>
+    </head>
 <style>
     table {
         width: 50%;
@@ -16,10 +20,14 @@
     }
     th, td {
         padding: 10px;
-        text-align: left;
+        text-align: center;
     }
     th {
         background-color: lightgray;
+    }
+
+    .btn {
+        padding: 10px;
     }
 </style>
 <body>
@@ -27,11 +35,17 @@
 
 
     <div>
-        <div>
+        <div class="btn">
+            <button id="reloadBtn" onclick="reloadBtn();">새로고침</button>
+        </div>
+        <!-- <div class="btn">
+            <button>외부시스템에 데이터 전송</button>
+        </div>
+        <div class="btn">
             <label>주문 ID :</label>
             <input></input>
-            <button>주문 조회</button>
-        </div>
+            <button>아이디 주문 조회</button>
+        </div> -->
     </div>
     <div>
         <table>
@@ -44,12 +58,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>abc</td>
-                    <td>고객명</td>
-                    <td>2024-10-14</td>
-                    <td>처리 중</td>
-                </tr>
+                <c:choose>
+                    <c:when test="${empty orderList}">
+                        <tr>
+                            <td>주문 목록이 없습니다</td>
+                        </tr>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="order" items="${orderList}">
+                            <tr>
+                                <td>${order.orderId}</td>
+                                <td>${order.orderName}</td>
+                                <td>${order.orderDate}</td>
+                                <td>${order.orderType}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </tbody>
         </table>
     </div>
