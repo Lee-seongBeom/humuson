@@ -1,17 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Main Page</title>
-</head>
-<body>
-    <h1>Welcome to the Main Page</h1>
-</body>
-</html>
-
-<!-- <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -51,7 +38,7 @@
             <thead>
                 <tr>
                     <th>주문 ID</th>
-                    <th>고객 명</th>
+                    <th>고객명</th>
                     <th>주문 날짜</th>
                     <th>주문 상태</th>
                 </tr>
@@ -59,7 +46,7 @@
             <tbody>
                 <tr>
                     <td>abc</td>
-                    <td>김철수</td>
+                    <td>고객명</td>
                     <td>2024-10-14</td>
                     <td>처리 중</td>
                 </tr>
@@ -67,4 +54,4 @@
         </table>
     </div>
 </body>
-</html> -->
+</html>
