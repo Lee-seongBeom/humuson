@@ -15,19 +15,24 @@ public class OrderServiceImpl implements OrderService{
     
     // 주문 조회
     @Override
-    public List<OrderDto> getOrder(){
+    public List<OrderDto> getOrder() throws Exception{
         return orderList;
     }
     
     // 주문 추가
     @Override
-    public void addOrder(OrderDto order){
-        orderList.add(order);
+    public void addOrder(List<OrderDto> addList) throws Exception{
+        if(addList !=null && !addList.isEmpty()){
+            orderList.addAll(addList);
+        }else{
+            throw new Exception("주문 추가 실패");
+        }
+
     }
 
     // 주문ID 검색 후 리스트 반환
     @Override
-    public List<OrderDto> getSearchId(String id){
+    public List<OrderDto> getSearchId(String id) throws Exception{
         List<OrderDto> orderList = getOrder();
         List<OrderDto> filterList = new ArrayList<>();
 

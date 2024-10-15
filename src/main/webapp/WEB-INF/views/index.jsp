@@ -26,12 +26,14 @@
     }
 
     .btn {
+        margin: 5px;
         padding: 10px;
+        border: 1px solid black;
+        width: 50%;
     }
 </style>
 <body>
     <h1>휴머스온 주문 조회 시스템</h1>
-
 
     <div>
         <div class="btn">
@@ -40,12 +42,15 @@
         
         <div class="btn">
             <label>주문 ID :</label>
-            <input type="text" id="searchText"></input>
-            <button onclick="searchId();">아이디 주문 조회</button>
+            <input type="text" id="searchText" onkeypress="searchId(event);"></input>
+            <button onclick="searchId(13);">아이디 주문 조회</button>
         </div>
-        <!-- <div class="btn">
-            <button onclick="dateSend();">외부시스템에 데이터 전송</button>
-        </div> -->
+
+        <div class="btn">
+            <button onclick="dateSend();">외부시스템으로 데이터 전송</button>
+        </div>
+
+        <input type="hidden" id="hiddenList"/>
     </div>
     <div>
         <table>

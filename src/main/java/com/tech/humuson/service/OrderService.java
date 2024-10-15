@@ -7,12 +7,12 @@ import com.tech.humuson.dto.OrderDto;
 public interface OrderService {
 
     // 주문 조회
-    List<OrderDto> getOrder();
+    List<OrderDto> getOrder() throws Exception;
 
     // 주문 추가
-    void addOrder(OrderDto order);
+    void addOrder(List<OrderDto> addList) throws Exception;
 
     // 주문ID 검색 조회
-    List<OrderDto> getSearchId(String id);
+    List<OrderDto> getSearchId(String id) throws Exception;
     
 }
