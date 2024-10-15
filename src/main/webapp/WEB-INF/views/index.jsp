@@ -29,7 +29,7 @@
         margin: 5px;
         padding: 10px;
         border: 1px solid black;
-        width: 50%;
+        display: inline-block;
     }
 </style>
 <body>
@@ -41,16 +41,17 @@
         </div>
         
         <div class="btn">
-            <label>주문 ID :</label>
-            <input type="text" id="searchText" onkeypress="searchId(event);"></input>
-            <button onclick="searchId(13);">아이디 주문 조회</button>
+            <input type="text" id="searchText" onkeypress="searchId(event);" placeholder="주문 ID를 적고 검색하세요."></input>
+            <button onclick="searchId('13');">주문 조회</button>
         </div>
 
         <div class="btn">
             <button onclick="dateSend();">외부시스템으로 데이터 전송</button>
         </div>
-
-        <input type="hidden" id="hiddenList"/>
+        
+        <div class="btn">
+            <button onclick="jsonToList();">리스트 형식으로 데이터 전송</button>
+        </div>
     </div>
     <div>
         <table>

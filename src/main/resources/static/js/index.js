@@ -1,7 +1,11 @@
-// 주문 데이터 테이블 표시 함수 -s-
+// 주문데이터 전역변수
+let globalOrderList = {};
+
+// 데이터 tr태그 append -s-
 function appendTag(val){
     let orderTbody = $("#orderTbody");
-    orderTbody.empty();
+    orderTbody.empty();     // 리스트 테이블 초기화
+    globalOrderList = {};   // 전역변수 초기화
 
     // 데이터 없을 경우
     if(val == ""){
@@ -22,8 +26,9 @@ function appendTag(val){
 
         orderTbody.append(row);
     });
+    globalOrderList = val;
 }
-// 주문 데이터 테이블 표시 함수 -e-
+// 데이터 tr태그 append -e-
 
 // 새로고침 -s-
 function reloadBtn(){
@@ -32,6 +37,7 @@ function reloadBtn(){
         type: "GET",
         success: function(val) {
             appendTag(val);
+            $("#searchText").val(""); // 주문ID 검색창 초기화
         },
         error: function(e) {
             alert("데이터를 불러오는 데 실패했습니다.");
@@ -41,7 +47,13 @@ function reloadBtn(){
 // 새로고침 -e-
 
 // 주문ID 검색 -s-
-function searchId(){
+function searchId(e){
+
+    // 엔터키만 허용 && 조회버튼 클릭
+    if(e.keyCode != "13" && e != "13"){
+        return false;
+    }
+
     let searchText = $("#searchText").val();
 
     $.ajax({
@@ -57,7 +69,6 @@ function searchId(){
             alert("데이터를 불러오는 데 실패했습니다.");
         }
     })
-    
 }
 // 주문ID 검색 -e-
 
@@ -65,15 +76,35 @@ function searchId(){
 function dateSend(){
 
     $.ajax({
-        url: "api/order/getset",
-        type: "GET",
-        success: function(val) {
-            console.log(val);
+        url: "api/order/sendData",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(globalOrderList),
+        success: function() {
+            alert("데이터 전송 완료");
         },
         error: function(e) {
-            $("#result").text("데이터를 불러오는 데 실패했습니다.");
+            alert("데이터 전송 실패");
         }
     })
-
 }
 // 외부시스템에 데이터 전송 -e-
+
+// 리스트 형식으로 데이터 전송 -s-
+function jsonToList(){
+    
+    $.ajax({
+        url: "api/order/jsonToList",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(globalOrderList),
+        // data: globalOrderList,
+        success: function() {
+            alert("데이터 전송 완료");
+        },
+        error: function(e) {
+            alert("데이터 전송 실패");
+        }
+    })
+}
+// 리스트 형식으로 데이터 전송 -e-

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +30,7 @@ public class ApiController {
 	 * @throws Exception
 	 */
     @RequestMapping("/get")
-    public List<OrderDto> getOrder(Model model) throws Exception{
+    public List<OrderDto> getOrder() throws Exception{
         return orderService.getOrder();
     }
     
@@ -49,7 +48,7 @@ public class ApiController {
             return ResponseEntity.ok("주문 추가 성공");
             
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("주문 추가 실패");
+            return ResponseEntity.status(500).body("네트워크 오류로 주문 추가 실패");
         }
     }
 
@@ -66,27 +65,36 @@ public class ApiController {
     }
 
     /**
-     * 외부시스템으로 데이터 전송 api
+     * 외부시스템으로 json형식 데이터 전송 api
      *
-     * @param String id
-     * @return List<OrderDto>
+     * @param List<OrderDto> jsonOrderList
+     * @return ResponseEntity<String>
      * @throws Exception
      */
     @RequestMapping("/sendData")
-    public String sendData(String param) throws Exception{
-        return new String();
+    public ResponseEntity<String> sendData(@RequestBody List<OrderDto> jsonOrderList) throws Exception{
+        try {
+            String jsonString = orderService.stringToJson(jsonOrderList);
+            return ResponseEntity.ok(jsonString);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("네트워크 오류로 데이터 전송 실패");
+        }
     }
     
     /**
-     * 전송 데이터 확인 api
+     * 리스트 형식으로 데이터 전송 api
      *
-     * @param String id
-     * @return List<OrderDto>
+     * @param List<OrderDto> orderList
+     * @return ResponseEntity<String>
      * @throws Exception
      */
-    @RequestMapping("/checkData")
-    public String checkData(String param) {
-        return new String();
+    @RequestMapping("/jsonToList")
+    public ResponseEntity<String> jsonToList(@RequestBody List<OrderDto> orderList) throws Exception{
+        try {
+            return ResponseEntity.ok(orderList.toString());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("네트워크 오류로 데이터 전송 실패");
+        }
     }
     
 
