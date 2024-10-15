@@ -17,6 +17,13 @@ public class MainController {
     @Autowired
     private OrderService orderService;
     
+    /**
+	 * 메인
+	 *
+	 * @param Model model
+	 * @return String
+	 * @throws Exception
+	 */
     @RequestMapping("/")
     public String main(Model model) throws Exception{
         

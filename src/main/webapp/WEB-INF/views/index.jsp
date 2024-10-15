@@ -1,10 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<script src="/js/index.js"></script>
-<script>
 
-</script>
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/js/index.js"></script>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -38,13 +37,14 @@
         <div class="btn">
             <button id="reloadBtn" onclick="reloadBtn();">새로고침</button>
         </div>
-        <!-- <div class="btn">
-            <button>외부시스템에 데이터 전송</button>
-        </div>
+        
         <div class="btn">
             <label>주문 ID :</label>
-            <input></input>
-            <button>아이디 주문 조회</button>
+            <input type="text" id="searchText"></input>
+            <button onclick="searchId();">아이디 주문 조회</button>
+        </div>
+        <!-- <div class="btn">
+            <button onclick="dateSend();">외부시스템에 데이터 전송</button>
         </div> -->
     </div>
     <div>
@@ -57,11 +57,11 @@
                     <th>주문 상태</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="orderTbody">
                 <c:choose>
                     <c:when test="${empty orderList}">
                         <tr>
-                            <td>주문 목록이 없습니다</td>
+                            <td colspan="4">주문 목록이 없습니다</td>
                         </tr>
                     </c:when>
                     <c:otherwise>

@@ -6,8 +6,13 @@ import com.tech.humuson.dto.OrderDto;
 
 public interface OrderService {
 
-    List<OrderDto> getOrder();      // 주문 조회
+    // 주문 조회
+    List<OrderDto> getOrder();
 
-    void addOrder(OrderDto order);  // 주문 추가
+    // 주문 추가
+    void addOrder(OrderDto order);
+
+    // 주문ID 검색 조회
+    List<OrderDto> getSearchId(String id);
     
 }

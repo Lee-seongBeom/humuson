@@ -20,39 +20,24 @@ public class ApiController {
     private OrderService orderService;
 
     /**
-	 * 주문 조회
+	 * 주문 조회 api
 	 *
 	 * @param Model model
-	 * @return void
+	 * @return List<OrderDto>
 	 * @throws Exception
 	 */
     @RequestMapping("/get")
-    public void getOrder(Model model) throws Exception{
-        List<OrderDto> orderList = orderService.getOrder();
-        model.addAttribute("orderList", orderList);
+    public List<OrderDto> getOrder(Model model) throws Exception{
+        return orderService.getOrder();
     }
     
     /**
-     * 주문ID를 통해 주문 조회
+     * 주문 추가 api
      *
      * @param OrderDto order
-     * @return 
-     * @throws Exception
+     * @return ResponseEntity<String>
+     * 
      */
-    @RequestMapping("/getOrderById")
-    public void getOrderById(Model model) throws Exception{
-        List<OrderDto> orderList = orderService.getOrder();
-        // model.addAttribute("orderList", orderList);
-
-    }
-
-    /**
-     * 주문 추가
-	 *
-     * @param OrderDto order
-     * @return ResponseEntity
-     * @throws Exception
-	 */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<String> addOrder(OrderDto order){
         try {
@@ -63,5 +48,17 @@ public class ApiController {
             return ResponseEntity.status(500).body("주문 추가 실패");
         }
     }
-    
+
+    /**
+     * 주문ID 검색 조회 api
+     *
+     * @param String id
+     * @return List<OrderDto>
+     * @throws Exception
+     */
+    @RequestMapping("/getSearchId")
+    public List<OrderDto> getSearchId(String id) throws Exception{
+        return orderService.getSearchId(id);
+    }
+
 }
