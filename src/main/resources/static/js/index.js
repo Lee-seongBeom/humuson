@@ -90,7 +90,7 @@ function dateSend(){
 }
 // 외부시스템에 데이터 전송 -e-
 
-// 리스트 형식으로 데이터 전송 -s-
+// 리스트 형식으로 데이터 반환 -s-
 function jsonToList(){
     
     $.ajax({
@@ -98,7 +98,6 @@ function jsonToList(){
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(globalOrderList),
-        // data: globalOrderList,
         success: function() {
             alert("데이터 전송 완료");
         },
@@ -107,4 +106,4 @@ function jsonToList(){
         }
     })
 }
-// 리스트 형식으로 데이터 전송 -e-
+// 리스트 형식으로 데이터 반환 -e-

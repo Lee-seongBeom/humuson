@@ -50,7 +50,7 @@
         </div>
         
         <div class="btn">
-            <button onclick="jsonToList();">리스트 형식으로 데이터 전송</button>
+            <button onclick="jsonToList();">리스트 형식으로 데이터 반환</button>
         </div>
     </div>
     <div>

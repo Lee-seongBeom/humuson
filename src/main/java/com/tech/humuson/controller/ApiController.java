@@ -82,7 +82,7 @@ public class ApiController {
     }
     
     /**
-     * 리스트 형식으로 데이터 전송 api
+     * 리스트 형식으로 데이터 반환 api
      *
      * @param List<OrderDto> orderList
      * @return ResponseEntity<String>
