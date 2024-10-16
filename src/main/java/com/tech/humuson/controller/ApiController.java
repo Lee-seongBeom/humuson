@@ -73,11 +73,15 @@ public class ApiController {
      */
     @RequestMapping("/sendData")
     public ResponseEntity<String> sendData(@RequestBody List<OrderDto> jsonOrderList) throws Exception{
-        try {
-            String jsonString = orderService.stringToJson(jsonOrderList);
-            return ResponseEntity.ok(jsonString);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("네트워크 오류로 데이터 전송 실패");
+        if(!jsonOrderList.isEmpty()){
+            try {
+                String jsonString = orderService.stringToJson(jsonOrderList);
+                return ResponseEntity.ok(jsonString);
+            } catch (Exception e) {
+                return ResponseEntity.status(500).body("네트워크 오류로 데이터 전송 실패");
+            }
+        } else{
+            return ResponseEntity.status(204).body("빈 데이터로 전송 실패");
         }
     }
     
@@ -90,10 +94,14 @@ public class ApiController {
      */
     @RequestMapping("/jsonToList")
     public ResponseEntity<String> jsonToList(@RequestBody List<OrderDto> orderList) throws Exception{
-        try {
-            return ResponseEntity.ok(orderList.toString());
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("네트워크 오류로 데이터 전송 실패");
+        if(!orderList.isEmpty()){
+            try {
+                return ResponseEntity.ok(orderList.toString());
+            } catch (Exception e) {
+                return ResponseEntity.status(500).body("네트워크 오류로 데이터 전송 실패");
+            }
+        } else{
+            return ResponseEntity.status(204).body("빈 데이터로 전송 실패");
         }
     }
     

@@ -68,42 +68,55 @@ function searchId(e){
         error: function(e) {
             alert("데이터를 불러오는 데 실패했습니다.");
         }
-    })
+    });
 }
 // 주문ID 검색 -e-
 
 // 외부시스템에 데이터 전송 -s-
 function dateSend(){
+    
+    if (Object.keys(globalOrderList).length === 0) {
+        alert("데이터가 없습니다. 데이터 추가 후 다시 실행해주세요.");
+        return false;
+    }else{
+        $.ajax({
+            url: "api/order/sendData",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(globalOrderList),
+            success: function() {
+                alert("데이터 전송 완료");
+            },
+            error: function(e) {
+                alert("데이터 전송 실패");
+            }
+        });
+    }
 
-    $.ajax({
-        url: "api/order/sendData",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(globalOrderList),
-        success: function() {
-            alert("데이터 전송 완료");
-        },
-        error: function(e) {
-            alert("데이터 전송 실패");
-        }
-    })
 }
 // 외부시스템에 데이터 전송 -e-
 
 // 리스트 형식으로 데이터 반환 -s-
 function jsonToList(){
-    
-    $.ajax({
-        url: "api/order/jsonToList",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(globalOrderList),
-        success: function() {
-            alert("데이터 전송 완료");
-        },
-        error: function(e) {
-            alert("데이터 전송 실패");
-        }
-    })
+
+    if (Object.keys(globalOrderList).length === 0) {
+        alert("데이터가 없습니다. 데이터 추가 후 다시 실행해주세요.");
+        return false;
+    }else{
+        $.ajax({
+            url: "api/order/jsonToList",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(globalOrderList),
+            success: function() {
+                alert("데이터 전송 완료");
+            },
+            error: function(e) {
+                alert("데이터 전송 실패");
+            }
+        });
+
+    }
+
 }
 // 리스트 형식으로 데이터 반환 -e-
