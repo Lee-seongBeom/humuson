@@ -27,13 +27,15 @@
   * 주문 ID 조회 시 SQL - like 검색과 같은 기능으로 데이터 검색
 - 테스트 방법
   * 초기 데이터 적재 방법
-    > Postman프로그램
-    > 1. post방식으로 변경
-    > 2. http://localhost:8080/api/order/add URL에 삽입
-    > 3. Body탭 클릭, JSON타입으로 변경
-    > 4. 더미데이터 삽입 후 Send 클릭
-    > * 더미데이터 예시
-    > >  [
+     *Postman프로그램
+       1. post방식으로 변경
+       2. http://localhost:8080/api/order/add URL에 삽입
+       3. Body탭 클릭, JSON타입으로 변경
+       4. 더미데이터 삽입 후 Send 클릭
+
+  
+      > * 더미데이터 예시
+      > >  [
     {
         "orderId" : "ID1"
         ,"orderName" : "고객명1"
