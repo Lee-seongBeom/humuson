@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tech.humuson.dto.OrderDto;
 
@@ -53,20 +52,20 @@ public class OrderServiceImpl implements OrderService{
         return objectMapper.writeValueAsString(jsonList);
     }
     
-    // json 형식의 문자열을 이스케이프 문자열로 변환
-    @Override
-    public String escapeString(String jsonStr) throws Exception{
-        String escapeStr = jsonStr.replaceAll("\"", "\\\\\"");
-        return escapeStr;
-    }
+    // // json 형식의 문자열을 이스케이프 문자열로 변환
+    // @Override
+    // public String escapeString(String jsonStr) throws Exception{
+    //     String escapeStr = jsonStr.replaceAll("\"", "\\\\\"");
+    //     return escapeStr;
+    // }
     
-    // 이스케이프 문자열을 리스트로 변환
-    @Override
-    public List<OrderDto> listStr(String escapStr) throws Exception{
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<OrderDto> jsonList = objectMapper.readValue(escapStr, new TypeReference<List<OrderDto>>(){});
-        return jsonList;
-    }
+    // // 이스케이프 문자열을 리스트로 변환
+    // @Override
+    // public List<OrderDto> listStr(String escapStr) throws Exception{
+    //     ObjectMapper objectMapper = new ObjectMapper();
+    //     List<OrderDto> jsonList = objectMapper.readValue(escapStr, new TypeReference<List<OrderDto>>(){});
+    //     return jsonList;
+    // }
 
 
 
